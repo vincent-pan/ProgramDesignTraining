@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 商品类型 数据库映射 -->
+<mapper namespace="GoodsTypeMapper">
+
+<!-- 选择全部商品类型信息 -->
+  <select id="selectAll" resultType="com.gsdxsys.entity.GoodsType">
+    SELECT * FROM goodsType 
+  </select>
+  
+<!-- 选择特定商品类型信息 -->
+   <select id="selectById" parameterType="int" resultType="com.gsdxsys.entity.GoodsType">
+    SELECT * FROM goodsType  where goodsType_id=#{_parameter}
+  </select>
+  
+  <!-- 插入商品类型信息  values:要求语句全部执行-->
+  <insert id="inserGoodsType" parameterType="com.gsdxsys.entity.Goods">
+    insert into goodsType(goodsType_name)
+    values(#{goodsType_name})
+  </insert>
+  
+  <!-- 修改商品类型信息 -->
+  	<update id="updateGoodsType" parameterType="com.gsdxsys.entity.Goods">
+  	 	update goodsType set goodsType_id=#{goodsType_id},
+   		goodsType_name=#{goodsType_name},
+   		where goodsType_id=#{goodsType_id}
+  	</update>
+  	
+  	<!-- 删除 -->
+  	<delete id="deleteGoodsType" parameterType="int">
+  		delete from goodsType where goodsType_id=#{goodsType_id}
+  	</delete>
+  	
+</mapper>

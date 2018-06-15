@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 商品 数据库映射 -->
+<mapper namespace="GoodsMapper">
+
+<!-- 获取全部商品信息 -->
+  <select id="selectAll" resultType="com.gsdxsys.entity.Goods">
+    SELECT * FROM goods  
+  </select>
+  
+  <!-- 获取特定商品信息 -->
+   <select id="selectById" resultType="com.gsdxsys.entity.Goods">
+    SELECT * FROM goods order where goods_id=#{_parameter}
+  </select>
+  
+<!-- 插入商品信息  values:要求语句全部执行-->
+  <insert id="inserGoods" parameterType="com.gsdxsys.entity.Goods">
+    insert into goods(goods_name,goods_price,goods_desc,type_id)
+    values(#{goods_name},#{goods_price},#{goods_desc},#{goodsType.goodsType_id})
+  </insert>
+  
+  <!-- 修改商品信息 -->
+  	<update id="updateGoods" parameterType="com.gsdxsys.entity.Goods">
+  	 	update goods set goods_id=#{goods_id},
+   		goods_name=#{goods_name},
+   		goods_type=#{goods_type},
+   		goods_price=#{goods_price},
+   		goods_desc=#{goods_desc}
+   		where goods_id=#{goods_id}
+  	</update>
+  	
+  	<!-- 删除 -->
+  	<delete id="deleteGoods" parameterType="int">
+  		delete from goods where goods_id=#{goods_id}
+  	</delete>
+  
+</mapper>
